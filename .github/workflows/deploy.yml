@@ -1,0 +1,37 @@
+name: Deploy to WordPress.org
+
+# Pushing a version tag publishes that version. Nothing else does, so a
+# merge to main is safe and a release is deliberate.
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  deploy:
+    name: Tag ${{ github.ref_name }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint PHP
+        run: |
+          php -l ai-disclosure-labels.php
+          for f in includes/*.php uninstall.php; do php -l "$f"; done
+
+      - name: Run tests
+        run: cd tools && php tests.php
+
+      - name: Check the tag matches the plugin header
+        run: |
+          naglowek=$(grep -oP '(?<=^ \* Version:)\s*\K[0-9.]+' ai-disclosure-labels.php)
+          readme=$(grep -oP '(?<=^Stable tag: )[0-9.]+' readme.txt)
+          echo "tag=${{ github.ref_name }} header=$naglowek readme=$readme"
+          test "${{ github.ref_name }}" = "$naglowek"
+          test "${{ github.ref_name }}" = "$readme"
+
+      - uses: 10up/action-wordpress-plugin-deploy@stable
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: ai-disclosure-labels
