@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       AI Disclosure Labels
  * Plugin URI:        https://webdesign.net.pl/
- * Description:       Mark images as AI-generated and show a visible disclosure label wherever they appear. Helps meet the transparency duty of the EU AI Act (Article 50), applicable since 2 August 2026.
+ * Description:       Mark an image as generated or modified by AI and show a disclosure label wherever it appears. For the EU AI Act transparency duty.
  * Version:           1.2.0
  * Requires at least: 6.2
  * Requires PHP:      7.4

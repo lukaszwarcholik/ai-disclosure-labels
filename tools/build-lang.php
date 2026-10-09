@@ -5,7 +5,6 @@ $dir = dirname( __DIR__ ) . '/languages';
 $t = array(
 	'A disclosure label will be shown with this image.' => 'Przy tej grafice pojawi się oznaczenie.',
 	'AI' => 'AI',
-	'AI Disclosure Labels' => 'Oznaczenia grafik AI',
 	'AI disclosure' => 'Oznaczenie AI',
 	'Badge text' => 'Tekst plakietki',
 	'Could not read the image settings.' => 'Nie udało się odczytać ustawień grafiki.',
@@ -57,6 +56,10 @@ $t = array(
 	'Automatic is recommended: a caption needs room to read, and a thumbnail has none.' => 'Zalecane automatycznie: podpis potrzebuje miejsca, a miniatura go nie ma.',
 	'On a photograph, plain text needs a shadow or a background to stay legible - the automatic setting handles that for you.' => 'Na zdjęciu zwykły tekst potrzebuje cienia albo tła, żeby dało się go przeczytać — ustawienie automatyczne robi to za Ciebie.',
 	'Applies to plain text only. A faded box over a photograph is where a disclosure stops being legible, so the backgrounds stay solid.' => 'Dotyczy tylko zwykłego tekstu. Wyblakłe tło na zdjęciu to moment, w którym oznaczenie przestaje być czytelne, więc tła zostają kryjące.',
+	// Nagłówek wtyczki — WordPress tłumaczy Name i Description przez text domain,
+	// więc na liście wtyczek w panelu widać je po polsku.
+	'AI Disclosure Labels' => 'Oznaczenia grafik AI',
+	'Mark an image as generated or modified by AI and show a disclosure label wherever it appears. For the EU AI Act transparency duty.' => 'Oznacz grafikę jako wygenerowaną albo zmodyfikowaną przez AI, a oznaczenie pojawi się wszędzie, gdzie jest ona użyta. Pod obowiązek przejrzystości z unijnego AI Act.',
 	'Where to show' => 'Gdzie pokazywać',
 );
 

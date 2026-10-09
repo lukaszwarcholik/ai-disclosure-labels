@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AI Disclosure Labels 1.0.0\n"
-"PO-Revision-Date: 2026-10-08 23:42+0000\n"
+"PO-Revision-Date: 2026-10-09 06:27+0000\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,9 +15,6 @@ msgstr "Przy tej grafice pojawi się oznaczenie."
 
 msgid "AI"
 msgstr "AI"
-
-msgid "AI Disclosure Labels"
-msgstr "Oznaczenia grafik AI"
 
 msgid "AI disclosure"
 msgstr "Oznaczenie AI"
@@ -168,6 +165,12 @@ msgstr "Na zdjęciu zwykły tekst potrzebuje cienia albo tła, żeby dało się 
 
 msgid "Applies to plain text only. A faded box over a photograph is where a disclosure stops being legible, so the backgrounds stay solid."
 msgstr "Dotyczy tylko zwykłego tekstu. Wyblakłe tło na zdjęciu to moment, w którym oznaczenie przestaje być czytelne, więc tła zostają kryjące."
+
+msgid "AI Disclosure Labels"
+msgstr "Oznaczenia grafik AI"
+
+msgid "Mark an image as generated or modified by AI and show a disclosure label wherever it appears. For the EU AI Act transparency duty."
+msgstr "Oznacz grafikę jako wygenerowaną albo zmodyfikowaną przez AI, a oznaczenie pojawi się wszędzie, gdzie jest ona użyta. Pod obowiązek przejrzystości z unijnego AI Act."
 
 msgid "Where to show"
 msgstr "Gdzie pokazywać"
