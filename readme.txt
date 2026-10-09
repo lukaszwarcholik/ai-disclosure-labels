@@ -1,5 +1,5 @@
 === AI Disclosure Labels ===
-Contributors: webdesignnetpl
+Contributors: lukaszwarcholik
 Tags: ai, disclosure, transparency, images, ai act
 Requires at least: 6.2
 Tested up to: 7.1
