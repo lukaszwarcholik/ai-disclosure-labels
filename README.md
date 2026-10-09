@@ -86,6 +86,10 @@ git tag 1.2.0 && git push --tags
 
 The first version was a prototype for one site (`wd-oznaczenia-ai`, first commit here). It was then rewritten for the plugin directory as `ai-disclosure-labels`, and went through 1.0.0, 1.0.1 and 1.1.0 in one evening before this repository existed — those were never released and their intermediate file states were not kept, so the second commit is 1.2.0. `readme.txt` carries the changelog.
 
+## AI assistance
+
+This plugin was written with AI assistance, recorded in the commit trailers as `Assisted-by`. An assistant is not a contributor: the decisions, the review and the responsibility for the code are mine. Given that the plugin exists to make AI involvement visible, saying so here seemed like the least it could do.
+
 ## License
 
 GPL-2.0-or-later.
