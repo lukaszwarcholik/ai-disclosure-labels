@@ -3,7 +3,7 @@
  * Plugin Name:       AI Disclosure Labels
  * Plugin URI:        https://webdesign.net.pl/
  * Description:       Mark an image as generated or modified by AI and show a disclosure label wherever it appears. For the EU AI Act transparency duty.
- * Version:           1.2.0
+ * Version:           1.3.0
  * Requires at least: 6.2
  * Requires PHP:      7.4
  * Author:            Lukasz Warcholik
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'AIDL_VERSION', '1.2.0' );
+define( 'AIDL_VERSION', '1.3.0' );
 define( 'AIDL_FILE', __FILE__ );
 define( 'AIDL_PATH', plugin_dir_path( __FILE__ ) );
 define( 'AIDL_URL', plugin_dir_url( __FILE__ ) );
@@ -78,6 +78,7 @@ function aidl_defaults() {
 		'style'        => 'auto',
 		'font_size'    => 13,
 		'opacity'      => 65,
+		'delete_data'  => 0,
 	);
 }
 

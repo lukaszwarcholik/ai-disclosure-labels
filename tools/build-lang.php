@@ -60,6 +60,9 @@ $t = array(
 	// więc na liście wtyczek w panelu widać je po polsku.
 	'AI Disclosure Labels' => 'Oznaczenia grafik AI',
 	'Mark an image as generated or modified by AI and show a disclosure label wherever it appears. For the EU AI Act transparency duty.' => 'Oznacz grafikę jako wygenerowaną albo zmodyfikowaną przez AI, a oznaczenie pojawi się wszędzie, gdzie jest ona użyta. Pod obowiązek przejrzystości z unijnego AI Act.',
+	'Uninstalling' => 'Odinstalowanie',
+	'Also delete the image marks when the plugin is deleted' => 'Usuń też oznaczenia grafik przy usuwaniu wtyczki',
+	'Off by default. The marks are your statements about your own images, so deleting the plugin keeps them: reinstall it and everything is marked as before. Switch this on only if you want to leave nothing behind.' => 'Domyślnie wyłączone. Oznaczenia to Twoje stwierdzenia o własnych grafikach, więc usunięcie wtyczki ich nie rusza: po ponownej instalacji wszystko jest oznaczone jak wcześniej. Włącz tylko wtedy, gdy nie chcesz zostawić po sobie niczego.',
 	'Where to show' => 'Gdzie pokazywać',
 );
 

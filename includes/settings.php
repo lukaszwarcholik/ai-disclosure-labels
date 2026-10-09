@@ -78,6 +78,7 @@ function aidl_sanitize( $input ) {
 	$out['show_single']  = empty( $input['show_single'] ) ? 0 : 1;
 	$out['show_archive'] = empty( $input['show_archive'] ) ? 0 : 1;
 	$out['catch_all']    = empty( $input['catch_all'] ) ? 0 : 1;
+	$out['delete_data']  = empty( $input['delete_data'] ) ? 0 : 1;
 
 	$size = isset( $input['font_size'] ) ? (int) $input['font_size'] : $defaults['font_size'];
 	$out['font_size'] = max( 9, min( 24, $size ) );
@@ -188,6 +189,14 @@ function aidl_settings_page() {
 					<td><input name="<?php echo esc_attr( AIDL_OPTION ); ?>[opacity]" id="aidl_opacity" type="number" min="20" max="100" class="small-text"
 						value="<?php echo esc_attr( aidl_get( 'opacity' ) ); ?>">
 						<p class="description"><?php echo esc_html__( 'Applies to plain text only. A faded box over a photograph is where a disclosure stops being legible, so the backgrounds stay solid.', 'ai-disclosure-labels' ); ?></p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row"><?php echo esc_html__( 'Uninstalling', 'ai-disclosure-labels' ); ?></th>
+					<td>
+						<label><input type="checkbox" name="<?php echo esc_attr( AIDL_OPTION ); ?>[delete_data]" value="1" <?php checked( aidl_get( 'delete_data' ), 1 ); ?>>
+							<?php echo esc_html__( 'Also delete the image marks when the plugin is deleted', 'ai-disclosure-labels' ); ?></label>
+						<p class="description"><?php echo esc_html__( 'Off by default. The marks are your statements about your own images, so deleting the plugin keeps them: reinstall it and everything is marked as before. Switch this on only if you want to leave nothing behind.', 'ai-disclosure-labels' ); ?></p>
 					</td>
 				</tr>
 			</table>

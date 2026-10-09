@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AI Disclosure Labels 1.0.0\n"
 "Report-Msgid-Bugs-To: https://webdesign.net.pl/\n"
-"POT-Creation-Date: 2026-10-09 06:27+0000\n"
+"POT-Creation-Date: 2026-10-09 08:27+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -170,6 +170,15 @@ msgid "AI Disclosure Labels"
 msgstr ""
 
 msgid "Mark an image as generated or modified by AI and show a disclosure label wherever it appears. For the EU AI Act transparency duty."
+msgstr ""
+
+msgid "Uninstalling"
+msgstr ""
+
+msgid "Also delete the image marks when the plugin is deleted"
+msgstr ""
+
+msgid "Off by default. The marks are your statements about your own images, so deleting the plugin keeps them: reinstall it and everything is marked as before. Switch this on only if you want to leave nothing behind."
 msgstr ""
 
 msgid "Where to show"
