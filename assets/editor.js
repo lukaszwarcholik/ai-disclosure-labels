@@ -1,13 +1,14 @@
 /**
- * Block editor panel for marking the featured image as AI-generated.
+ * The AI mark, shown directly under the featured image.
+ *
+ * It lives there rather than in a panel of its own because that is the
+ * moment the author actually knows where the picture came from, and because
+ * a panel sitting between Categories and Tags reads as a setting of the
+ * post. It is not: the mark belongs to the file. So the control names the
+ * file it is about, which says that faster than any sentence under it.
  *
  * Plain wp.element.createElement calls - no JSX, so the plugin needs no
  * build step and the file you ship is the file you wrote.
- *
- * The flag belongs to the attachment, not to the post, so it is written
- * straight to /wp/v2/media/<id> instead of riding along with the post save.
- * That is also why the toggle takes effect immediately: there is nothing
- * for "Update" to flush.
  *
  * @package AiDisclosureLabels
  */
@@ -15,7 +16,7 @@
 ( function ( wp ) {
 	'use strict';
 
-	if ( ! wp || ! wp.plugins || ! wp.editPost || ! wp.element ) {
+	if ( ! wp || ! wp.hooks || ! wp.compose || ! wp.element ) {
 		return;
 	}
 
@@ -25,7 +26,6 @@
 	var __ = wp.i18n.__;
 	var useSelect = wp.data.useSelect;
 	var apiFetch = wp.apiFetch;
-	var PluginDocumentSettingPanel = wp.editPost.PluginDocumentSettingPanel;
 	var SelectControl = wp.components.SelectControl;
 	var Spinner = wp.components.Spinner;
 	var META = '_aidl_mode';
@@ -37,13 +37,7 @@
 		{ value: 'modified', label: __( 'Modified using AI', 'ai-disclosure-labels' ) },
 	];
 
-	var POMOC = {
-		'': __( 'No label will be shown.', 'ai-disclosure-labels' ),
-		generated: __( 'A disclosure label will be shown with this image.', 'ai-disclosure-labels' ),
-		modified: __( 'Shown as a real image altered by AI.', 'ai-disclosure-labels' ),
-	};
-
-	function Panel() {
+	function Oznaczenie() {
 
 		var thumbnailId = useSelect( function ( select ) {
 
@@ -56,22 +50,27 @@
 			return parseInt( editor.getEditedPostAttribute( 'featured_media' ), 10 ) || 0;
 		}, [] );
 
-		var stan = useState( null );
-		var tryb = stan[ 0 ];
-		var setTryb = stan[ 1 ];
+		var stanTryb = useState( null );
+		var tryb = stanTryb[ 0 ];
+		var setTryb = stanTryb[ 1 ];
 
-		var zapis = useState( false );
-		var saving = zapis[ 0 ];
-		var setSaving = zapis[ 1 ];
+		var stanPlik = useState( '' );
+		var plik = stanPlik[ 0 ];
+		var setPlik = stanPlik[ 1 ];
 
-		var blad = useState( '' );
-		var error = blad[ 0 ];
-		var setError = blad[ 1 ];
+		var stanZapis = useState( false );
+		var saving = stanZapis[ 0 ];
+		var setSaving = stanZapis[ 1 ];
+
+		var stanBlad = useState( '' );
+		var error = stanBlad[ 0 ];
+		var setError = stanBlad[ 1 ];
 
 		useEffect( function () {
 
 			if ( ! thumbnailId ) {
 				setTryb( null );
+				setPlik( '' );
 				return;
 			}
 
@@ -95,6 +94,7 @@
 					}
 
 					setTryb( wartosc );
+					setPlik( media && media.source_url ? media.source_url.split( '/' ).pop() : '' );
 				} )
 				.catch( function () {
 
@@ -110,6 +110,14 @@
 				anulowane = true;
 			};
 		}, [ thumbnailId ] );
+
+		if ( ! thumbnailId ) {
+			return null;
+		}
+
+		if ( null === tryb ) {
+			return el( 'div', { style: { marginTop: '12px' } }, el( Spinner, {} ) );
+		}
 
 		function zmien( wartosc ) {
 
@@ -137,54 +145,49 @@
 				} );
 		}
 
-		var tresc;
+		/*
+		 * The help line names the file, so it is obvious that this changes
+		 * the image and not the post - including for an image used by more
+		 * than one post.
+		 */
+		var pomoc = plik
+			? plik + ' — ' + __( 'the mark belongs to the file and shows up everywhere it is used.', 'ai-disclosure-labels' )
+			: __( 'the mark belongs to the file and shows up everywhere it is used.', 'ai-disclosure-labels' );
 
-		if ( ! thumbnailId ) {
-
-			tresc = el(
-				'p',
-				{ style: { margin: 0, opacity: 0.7 } },
-				__( 'Set a featured image first.', 'ai-disclosure-labels' )
-			);
-
-		} else if ( null === tryb ) {
-
-			tresc = el( Spinner, {} );
-
-		} else {
-
-			tresc = el( SelectControl, {
-				label: __( 'How was this image made?', 'ai-disclosure-labels' ),
-				help: POMOC[ tryb ] || '',
+		return el(
+			'div',
+			{ className: 'aidl-featured', style: { marginTop: '12px' } },
+			el( SelectControl, {
+				label: __( 'Was this image made with AI?', 'ai-disclosure-labels' ),
+				help: pomoc,
 				value: tryb,
 				options: TRYBY,
 				disabled: saving,
 				onChange: zmien,
 				__nextHasNoMarginBottom: true,
-			} );
-		}
-
-		return el(
-			PluginDocumentSettingPanel,
-			{
-				name: 'aidl-panel',
-				title: __( 'AI disclosure', 'ai-disclosure-labels' ),
-				className: 'aidl-panel',
-			},
-			tresc,
+			} ),
 			error
-				? el( 'p', { style: { margin: '8px 0 0', color: '#b32d2e' } }, error )
-				: null,
-			thumbnailId && null !== tryb
-				? el(
-						'p',
-						{ style: { margin: '8px 0 0', fontSize: '12px', opacity: 0.7 } },
-						__( 'The mark stays with the image, so it applies everywhere the image is used.', 'ai-disclosure-labels' )
-				  )
+				? el( 'p', { style: { margin: '4px 0 0', color: '#b32d2e' } }, error )
 				: null
 		);
 	}
 
-	wp.plugins.registerPlugin( 'ai-disclosure-labels', { render: Panel } );
+	/*
+	 * editor.PostFeaturedImage is the supported way to extend that panel, so
+	 * the control sits under the thumbnail instead of in a panel of its own.
+	 */
+	var rozszerz = wp.compose.createHigherOrderComponent( function ( Oryginal ) {
+
+		return function ( props ) {
+			return el(
+				wp.element.Fragment,
+				{},
+				el( Oryginal, props ),
+				el( Oznaczenie )
+			);
+		};
+	}, 'aidlFeaturedImage' );
+
+	wp.hooks.addFilter( 'editor.PostFeaturedImage', 'ai-disclosure-labels/featured-image', rozszerz );
 
 } )( window.wp );

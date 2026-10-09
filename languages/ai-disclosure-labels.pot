@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AI Disclosure Labels 1.0.0\n"
 "Report-Msgid-Bugs-To: https://webdesign.net.pl/\n"
-"POT-Creation-Date: 2026-10-09 08:27+0000\n"
+"POT-Creation-Date: 2026-10-09 08:44+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -46,13 +46,7 @@ msgstr ""
 msgid "Listings and archives"
 msgstr ""
 
-msgid "No label will be shown."
-msgstr ""
-
 msgid "Saving failed. Please try again."
-msgstr ""
-
-msgid "Set a featured image first."
 msgstr ""
 
 msgid "Settings"
@@ -65,9 +59,6 @@ msgid "Shown under the image on single posts and pages."
 msgstr ""
 
 msgid "Single posts and pages"
-msgstr ""
-
-msgid "The mark stays with the image, so it applies everywhere the image is used."
 msgstr ""
 
 msgid "This plugin helps you publish a disclosure. It does not decide for you which images require one, and it is not legal advice."
@@ -86,12 +77,6 @@ msgid "Not AI"
 msgstr ""
 
 msgid "Modified using AI"
-msgstr ""
-
-msgid "How was this image made?"
-msgstr ""
-
-msgid "Shown as a real image altered by AI."
 msgstr ""
 
 msgid "A disclosure label will be shown with this image. \"Modified\" is for a real photo an AI has altered."
@@ -179,6 +164,12 @@ msgid "Also delete the image marks when the plugin is deleted"
 msgstr ""
 
 msgid "Off by default. The marks are your statements about your own images, so deleting the plugin keeps them: reinstall it and everything is marked as before. Switch this on only if you want to leave nothing behind."
+msgstr ""
+
+msgid "Was this image made with AI?"
+msgstr ""
+
+msgid "the mark belongs to the file and shows up everywhere it is used."
 msgstr ""
 
 msgid "Where to show"

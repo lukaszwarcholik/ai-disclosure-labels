@@ -182,7 +182,7 @@ function aidl_editor_assets() {
 	wp_enqueue_script(
 		'aidl-editor',
 		AIDL_URL . 'assets/editor.js',
-		array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data', 'wp-api-fetch', 'wp-i18n' ),
+		array( 'wp-hooks', 'wp-compose', 'wp-element', 'wp-components', 'wp-data', 'wp-api-fetch', 'wp-i18n' ),
 		AIDL_VERSION,
 		true
 	);
