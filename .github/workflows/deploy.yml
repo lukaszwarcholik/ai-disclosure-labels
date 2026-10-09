@@ -30,8 +30,24 @@ jobs:
           test "${{ github.ref_name }}" = "$naglowek"
           test "${{ github.ref_name }}" = "$readme"
 
+      # Dopóki wtyczki nie ma w katalogu, sekretów nie ma i publikacja nie ma
+      # dokąd pójść. Bez tego warunku każdy tag kończy się mailem o nieudanym
+      # przebiegu, mimo że lint, testy i zgodność wersji przeszły.
+      - name: Czy sa poswiadczenia do WordPress.org
+        id: svn
+        run: echo "ready=${{ secrets.SVN_PASSWORD != '' }}" >> "$GITHUB_OUTPUT"
+
       - uses: 10up/action-wordpress-plugin-deploy@stable
+        if: steps.svn.outputs.ready == 'true'
         env:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SLUG: ai-disclosure-labels
+
+      - name: Pominieto publikacje
+        if: steps.svn.outputs.ready != 'true'
+        run: |
+          echo "Brak sekretow SVN_USERNAME / SVN_PASSWORD."
+          echo "Kod zostal sprawdzony, ale nic nie poszlo do WordPress.org."
+          echo "Dodaj sekrety w Settings -> Secrets and variables -> Actions,"
+          echo "gdy wtyczka zostanie przyjeta do katalogu."
