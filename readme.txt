@@ -99,14 +99,6 @@ It is one pass over the output of a page you are already rendering, and it only 
 
 Settings and all image marks are deleted. Nothing is left in the database.
 
-== Screenshots ==
-
-1. The checkbox in the Media Library.
-2. The AI disclosure panel next to the featured image.
-3. The label under a featured image on a single post.
-4. The badge on thumbnails in a listing.
-5. The settings page.
-
 == Changelog ==
 
 = 1.2.0 =
