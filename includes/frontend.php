@@ -456,7 +456,7 @@ function aidl_render_block( $html, $block ) {
  *
  *     aidl_label( $attachment_id );
  *
- * or use the [ai_disclosure id="123"] shortcode in content.
+ * or use the [aidl_disclosure id="123"] shortcode in content.
  *
  * @param int    $attachment_id Attachment ID.
  * @param string $variant       'caption', 'badge' or '' for automatic.
@@ -478,7 +478,7 @@ function aidl_label( $attachment_id, $variant = '', $echo = true ) {
 	return $out;
 }
 
-add_shortcode( 'ai_disclosure', 'aidl_shortcode' );
+add_shortcode( 'aidl_disclosure', 'aidl_shortcode' );
 function aidl_shortcode( $atts ) {
 
 	$atts = shortcode_atts(
@@ -487,7 +487,7 @@ function aidl_shortcode( $atts ) {
 			'variant' => '',
 		),
 		$atts,
-		'ai_disclosure'
+		'aidl_disclosure'
 	);
 
 	return aidl_label( (int) $atts['id'], $atts['variant'], false );

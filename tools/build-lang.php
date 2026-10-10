@@ -53,7 +53,7 @@ $t = array(
 	'Applies to plain text only. A faded box over a photograph is where a disclosure stops being legible, so the backgrounds stay solid.' => 'Dotyczy tylko zwykłego tekstu. Wyblakłe tło na zdjęciu to moment, w którym oznaczenie przestaje być czytelne, więc tła zostają kryjące.',
 	// Nagłówek wtyczki — WordPress tłumaczy Name i Description przez text domain,
 	// więc na liście wtyczek w panelu widać je po polsku.
-	'AI Disclosure Labels' => 'Oznaczenia grafik AI',
+	'Lucjan AI Image Disclosure' => 'Oznaczenia grafik AI',
 	'Mark an image as generated or modified by AI and show a disclosure label wherever it appears. For the EU AI Act transparency duty.' => 'Oznacz grafikę jako wygenerowaną albo zmodyfikowaną przez AI, a oznaczenie pojawi się wszędzie, gdzie jest ona użyta. Pod obowiązek przejrzystości z unijnego AI Act.',
 	'Uninstalling' => 'Odinstalowanie',
 	'Also delete the image marks when the plugin is deleted' => 'Usuń też oznaczenia grafik przy usuwaniu wtyczki',
@@ -85,38 +85,38 @@ function po_escape( $s ) {
 $pot  = "# Copyright (C) 2026 Lukasz Warcholik\n";
 $pot .= "# This file is distributed under the GPL-2.0-or-later license.\n";
 $pot .= "msgid \"\"\nmsgstr \"\"\n";
-$pot .= "\"Project-Id-Version: AI Disclosure Labels 1.0.0\\n\"\n";
+$pot .= "\"Project-Id-Version: Lucjan AI Image Disclosure 1.0.0\\n\"\n";
 $pot .= "\"Report-Msgid-Bugs-To: https://webdesign.net.pl/\\n\"\n";
 $pot .= "\"POT-Creation-Date: {$date}\\n\"\n";
 $pot .= "\"MIME-Version: 1.0\\n\"\n";
 $pot .= "\"Content-Type: text/plain; charset=UTF-8\\n\"\n";
 $pot .= "\"Content-Transfer-Encoding: 8bit\\n\"\n";
-$pot .= "\"X-Domain: ai-disclosure-labels\\n\"\n\n";
+$pot .= "\"X-Domain: lucjan-ai-image-disclosure\\n\"\n\n";
 
 foreach ( array_keys( $t ) as $msgid ) {
 	$pot .= 'msgid "' . po_escape( $msgid ) . "\"\nmsgstr \"\"\n\n";
 }
-file_put_contents( "$dir/ai-disclosure-labels.pot", $pot );
+file_put_contents( "$dir/lucjan-ai-image-disclosure.pot", $pot );
 
 /* ---------- PO (pl_PL) ---------- */
-$po  = "# Polish translation for AI Disclosure Labels.\n";
+$po  = "# Polish translation for Lucjan AI Image Disclosure.\n";
 $po .= "msgid \"\"\nmsgstr \"\"\n";
-$po .= "\"Project-Id-Version: AI Disclosure Labels 1.0.0\\n\"\n";
+$po .= "\"Project-Id-Version: Lucjan AI Image Disclosure 1.0.0\\n\"\n";
 $po .= "\"PO-Revision-Date: {$date}\\n\"\n";
 $po .= "\"Language: pl_PL\\n\"\n";
 $po .= "\"MIME-Version: 1.0\\n\"\n";
 $po .= "\"Content-Type: text/plain; charset=UTF-8\\n\"\n";
 $po .= "\"Content-Transfer-Encoding: 8bit\\n\"\n";
 $po .= "\"Plural-Forms: {$plural}\\n\"\n";
-$po .= "\"X-Domain: ai-disclosure-labels\\n\"\n\n";
+$po .= "\"X-Domain: lucjan-ai-image-disclosure\\n\"\n\n";
 
 foreach ( $t as $msgid => $msgstr ) {
 	$po .= 'msgid "' . po_escape( $msgid ) . "\"\n" . 'msgstr "' . po_escape( $msgstr ) . "\"\n\n";
 }
-file_put_contents( "$dir/ai-disclosure-labels-pl_PL.po", $po );
+file_put_contents( "$dir/lucjan-ai-image-disclosure-pl_PL.po", $po );
 
 /* ---------- MO (pl_PL) ---------- */
-$entries = array( '' => "Project-Id-Version: AI Disclosure Labels 1.0.0\nLanguage: pl_PL\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: {$plural}\n" );
+$entries = array( '' => "Project-Id-Version: Lucjan AI Image Disclosure 1.0.0\nLanguage: pl_PL\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: {$plural}\n" );
 foreach ( $t as $k => $v ) {
 	$entries[ $k ] = $v;
 }
@@ -146,7 +146,7 @@ foreach ( $strs as $i => $s ) {
 
 $mo = pack( 'VVVVVVV', 0x950412de, 0, $count, $orig_table, $trans_table, 0, $offset )
 	. $o_desc . $t_desc . $o_data . $t_data;
-file_put_contents( "$dir/ai-disclosure-labels-pl_PL.mo", $mo );
+file_put_contents( "$dir/lucjan-ai-image-disclosure-pl_PL.mo", $mo );
 
 /* ---------- JSON for assets/editor.js ---------- */
 $locale_data = array( '' => array( 'domain' => 'messages', 'lang' => 'pl', 'plural-forms' => $plural ) );
@@ -155,7 +155,7 @@ foreach ( $js as $msgid ) {
 }
 $json = wp_like_json( array(
 	'translation-revision-date' => $date,
-	'generator'                 => 'ai-disclosure-labels build-lang.php',
+	'generator'                 => 'lucjan-ai-image-disclosure build-lang.php',
 	'domain'                    => 'messages',
 	'locale_data'               => array( 'messages' => $locale_data ),
 ) );
@@ -167,7 +167,7 @@ function wp_like_json( $a ) {
 // WordPress looks the file up by md5 of the script's relative path, and
 // falls back to md5 of the handle. Ship both names - a few hundred bytes.
 foreach ( array( md5( 'assets/editor.js' ), md5( 'aidl-editor' ) ) as $hash ) {
-	file_put_contents( "$dir/ai-disclosure-labels-pl_PL-{$hash}.json", $json );
+	file_put_contents( "$dir/lucjan-ai-image-disclosure-pl_PL-{$hash}.json", $json );
 }
 
 echo "strings: $count\n";

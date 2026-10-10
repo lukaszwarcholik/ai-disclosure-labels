@@ -6,7 +6,7 @@ Repozytorium na GitHubie już istnieje i jest puste:
 Zdalne `origin` jest już ustawione w tym katalogu. Wystarczy:
 
 ```bash
-cd ai-disclosure-labels-repo
+cd lucjan-ai-image-disclosure-repo
 git push -u origin main
 git push --tags
 ```

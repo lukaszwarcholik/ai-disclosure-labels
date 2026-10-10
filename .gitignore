@@ -2,3 +2,6 @@
 node_modules/
 vendor/
 *.zip
+languages/*.po
+languages/*.mo
+languages/*.json

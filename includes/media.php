@@ -104,11 +104,11 @@ function aidl_attachment_field( $form_fields, $post ) {
 
 	$html = '<select name="' . esc_attr( $nazwa ) . '" style="max-width:100%;">' . $opcje . '</select>'
 		. '<p style="margin:6px 0 0;opacity:.7;font-size:12px;">'
-		. esc_html__( 'A disclosure label will be shown with this image. "Modified" is for a real photo an AI has altered.', 'ai-disclosure-labels' )
+		. esc_html__( 'A disclosure label will be shown with this image. "Modified" is for a real photo an AI has altered.', 'lucjan-ai-image-disclosure' )
 		. '</p>';
 
 	$form_fields['aidl_mode'] = array(
-		'label'         => __( 'AI disclosure', 'ai-disclosure-labels' ),
+		'label'         => __( 'AI disclosure', 'lucjan-ai-image-disclosure' ),
 		'input'         => 'html',
 		'html'          => $html,
 		'show_in_edit'  => true,
@@ -144,7 +144,7 @@ function aidl_attachment_save( $post, $attachment ) {
 add_filter( 'manage_media_columns', 'aidl_media_column' );
 function aidl_media_column( $columns ) {
 
-	$columns['aidl'] = __( 'AI', 'ai-disclosure-labels' );
+	$columns['aidl'] = __( 'AI', 'lucjan-ai-image-disclosure' );
 
 	return $columns;
 }
@@ -164,8 +164,8 @@ function aidl_media_column_content( $column, $post_id ) {
 	}
 
 	$skroty = array(
-		'generated' => __( 'generated', 'ai-disclosure-labels' ),
-		'modified'  => __( 'modified', 'ai-disclosure-labels' ),
+		'generated' => __( 'generated', 'lucjan-ai-image-disclosure' ),
+		'modified'  => __( 'modified', 'lucjan-ai-image-disclosure' ),
 	);
 
 	echo '<span title="' . esc_attr( aidl_modes()[ $mode ] ) . '">'
@@ -187,5 +187,5 @@ function aidl_editor_assets() {
 		true
 	);
 
-	wp_set_script_translations( 'aidl-editor', 'ai-disclosure-labels', AIDL_PATH . 'languages' );
+	wp_set_script_translations( 'aidl-editor', 'lucjan-ai-image-disclosure' );
 }

@@ -16,7 +16,7 @@ jobs:
 
       - name: Lint PHP
         run: |
-          php -l ai-disclosure-labels.php
+          php -l lucjan-ai-image-disclosure.php
           for f in includes/*.php uninstall.php; do php -l "$f"; done
 
       - name: Run tests
@@ -24,7 +24,7 @@ jobs:
 
       - name: Check the tag matches the plugin header
         run: |
-          naglowek=$(grep -oP '(?<=^ \* Version:)\s*\K[0-9.]+' ai-disclosure-labels.php)
+          naglowek=$(grep -oP '(?<=^ \* Version:)\s*\K[0-9.]+' lucjan-ai-image-disclosure.php)
           readme=$(grep -oP '(?<=^Stable tag: )[0-9.]+' readme.txt)
           echo "tag=${{ github.ref_name }} header=$naglowek readme=$readme"
           test "${{ github.ref_name }}" = "$naglowek"
@@ -42,7 +42,7 @@ jobs:
         env:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
-          SLUG: ai-disclosure-labels
+          SLUG: lucjan-ai-image-disclosure
 
       - name: Pominieto publikacje
         if: steps.svn.outputs.ready != 'true'
