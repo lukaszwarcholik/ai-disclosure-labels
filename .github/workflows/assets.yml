@@ -9,6 +9,7 @@ on:
     paths:
       - 'readme.txt'
       - '.wordpress-org/**'
+      - '.github/workflows/assets.yml'
 
 jobs:
   assets:
@@ -20,6 +21,11 @@ jobs:
       - name: Czy sa poswiadczenia do WordPress.org
         id: svn
         run: echo "ready=${{ secrets.SVN_PASSWORD != '' }}" >> "$GITHUB_OUTPUT"
+
+      # Akcja kopiuje .wordpress-org/ rsynciem; bez katalogu konczy sie
+      # kodem 23. Git nie trzyma pustych folderow, wiec tworzymy go tutaj.
+      - name: Katalog grafik
+        run: mkdir -p .wordpress-org
 
       - uses: 10up/action-wordpress-plugin-asset-update@stable
         if: steps.svn.outputs.ready == 'true'

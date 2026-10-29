@@ -37,6 +37,9 @@ jobs:
         id: svn
         run: echo "ready=${{ secrets.SVN_PASSWORD != '' }}" >> "$GITHUB_OUTPUT"
 
+      - name: Katalog grafik
+        run: mkdir -p .wordpress-org
+
       - uses: 10up/action-wordpress-plugin-deploy@stable
         if: steps.svn.outputs.ready == 'true'
         env:
