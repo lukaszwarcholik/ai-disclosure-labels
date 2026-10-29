@@ -54,8 +54,8 @@ includes/frontend.php      labels on the front end
 includes/catch-all.php     optional pass over the finished page
 includes/settings.php      Settings -> Lucjan AI Image Disclosure
 assets/editor.js           block editor panel, no JSX and no build step
-languages/                 .pot, pl_PL .po/.mo and the JSON for wp.i18n
-tools/build-lang.php       regenerates everything in languages/
+languages/                 .pot template for translate.wordpress.org
+tools/build-lang.php       regenerates the .pot (and a local pl_PL build for testing)
 tools/tests.php            label logic against WordPress stubs
 uninstall.php              removes settings and marks
 ```
@@ -74,11 +74,32 @@ cd tools && php build-lang.php   # after changing any translatable string
 
 ## Releasing
 
-`.github/workflows/deploy.yml` pushes a tag to the WordPress.org SVN repository. Set `SVN_USERNAME` and `SVN_PASSWORD` in the repository secrets, then:
+WordPress.org: https://wordpress.org/plugins/lucjan-ai-image-disclosure/
+SVN: https://plugins.svn.wordpress.org/lucjan-ai-image-disclosure/
 
-```bash
-git tag 1.2.0 && git push --tags
+Two workflows, both in `.github/workflows/`:
+
+| Workflow | Runs on | Does |
+|---|---|---|
+| `deploy.yml` | a version tag (`1.5.1`) | lint, tests, tag = header = `Stable tag`, then `trunk/` + `tags/<version>/` + `assets/` in SVN |
+| `assets.yml` | push to `main` touching `readme.txt` or `.wordpress-org/` | updates only the readme and the directory graphics, no new version |
+
+A release:
+
+1. Bump `Version:` in the plugin header, `AIDL_VERSION`, and `Stable tag:` in `readme.txt`; add the changelog entry.
+2. Commit, then `git tag 1.5.1 && git push && git push --tags`.
+
+Raising `Tested up to` after a new WordPress release needs no version: edit `readme.txt` on `main` and `assets.yml` pushes it.
+
+Directory graphics live in `.wordpress-org/` and go to the SVN `assets/` folder, never into the plugin zip:
+
 ```
+icon-128x128.png    icon-256x256.png
+banner-772x250.png  banner-1544x500.png
+screenshot-1.png ... screenshot-5.png   (captions are in readme.txt)
+```
+
+Both workflows need the repository secrets `SVN_USERNAME` (`lukaszwarcholik`) and `SVN_PASSWORD` (the SVN password from the WordPress.org profile, Account & Security - not the login password). Without them the checks still run and the upload is skipped.
 
 `.distignore` keeps `tools/`, tests and repository metadata out of the shipped plugin.
 

@@ -60,7 +60,7 @@ or in content: `[aidl_disclosure id="123"]`
 
 **Languages**
 
-English (source) and Polish included.
+Written in English. Translations, Polish included, are delivered by WordPress.org from [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/lucjan-ai-image-disclosure/) - help translate it there.
 
 == Installation ==
 
